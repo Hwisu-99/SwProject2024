@@ -84,7 +84,7 @@
 
     JWT_SECRET=yourSuperSecretKey
 
-    PORT=5000
+    PORT=3000
     ```
 
 6. 서버를 시작합니다:
@@ -93,7 +93,7 @@
     npm start
     ```
 
-    서버가 실행 중이면, `http://localhost:5000`에서 API를 사용할 수 있습니다.
+    서버가 실행 중이면, `http://localhost:3000`에서 API를 사용할 수 있습니다.
 
 ## API 사용 방법
 
