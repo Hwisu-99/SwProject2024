@@ -10,7 +10,7 @@
     npm install express mysql2 dotenv jsonwebtoken body-parser
     ```
 
-3. MySQL에서 데이터베이스와 테이블을 생성합니다:
+3. MySQL에서 데이터베이스와 테이블을 생성합니다(API 실험용):
 
     ```sql
     CREATE DATABASE team_management;
@@ -51,7 +51,7 @@
     );
     ```
 
-4. 초기 데이터 삽입:
+4. 초기 데이터 삽입(API실험용):
 
     ```sql
     -- users 데이터 삽입
