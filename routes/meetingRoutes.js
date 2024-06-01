@@ -5,6 +5,7 @@ const authenticateJWT = require('../middleware/authenticateJWT');
 
 const router = express.Router();
 
+// POST : http://localhost:3000/api/meetings/ : 그룹 미팅 생성
 router.post('/', authenticateJWT, createMeeting);
 
 module.exports = router;
