@@ -13,7 +13,7 @@ const connection = mysql.createConnection({
 
 connection.connect((err) => {
   if (err) throw err;
-  console.log('Connected to the MySQL server.');
+  console.log('MySQL접속에 성공하였습니다.');
 });
 
 module.exports = connection;
