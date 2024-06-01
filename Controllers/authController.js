@@ -1,3 +1,4 @@
+// 로그인 인증을 처리하는 컨트롤러 파일
 const User = require('../models/User');
 const { generateToken } = require('../utils/jwt');
 

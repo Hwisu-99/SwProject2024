@@ -1,3 +1,4 @@
+// 미팅 관련 기능을 처리하는 컨트롤러 파일
 const Meeting = require('../models/Meeting');
 
 const createMeeting = (req, res) => {
