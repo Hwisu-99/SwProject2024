@@ -1,15 +1,15 @@
 const db = require('../config/db');
 
 const Group = {
-  findByUserId: (userId, callback) => {
+  findByGroupId: (userGroupId, callback) => {
     const query = `
       SELECT ug.id, ug.name, u.name AS member
       FROM user_groups ug
       JOIN group_members gm ON ug.id = gm.group_id
       JOIN users u ON gm.user_id = u.id
-      WHERE gm.user_id = ?
+      WHERE gm.group_id = ?
     `;
-    db.query(query, [userId], callback);
+    db.query(query, [userGroupId], callback);
   },
   getSchedule: (groupId, callback) => {
     const query = `

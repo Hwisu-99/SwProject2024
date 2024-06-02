@@ -9,9 +9,10 @@ const authenticateJWT = (req, res, next) => {
 
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
       if (err) {
-        return res.sendStatus(403);
+        return res.status(403).send('Invalid Token');
       }
       req.user = user;
+      console.log(req.user);
       next();
     });
   } else {

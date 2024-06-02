@@ -12,6 +12,9 @@ const login = (req, res) => {
     if (user.password === password) {
       const token = generateToken(user);
       res.json({ token });
+      console.log("로그인 성공!");
+      console.log(token);
+      console.log(user);
     } else {
       res.status(401).send('잘못된 비밀번호입니다');
     }
