@@ -21,7 +21,8 @@
 2. 필요한 패키지를 설치합니다:
 
     ```sh
-    npm install express mysql2 dotenv jsonwebtoken body-parser 
+    npm install express mysql2 dotenv jsonwebtoken body-parser
+    npm install -g nodemon  
 
     ```
 
