@@ -18,6 +18,7 @@ dotenv.config();
 const app = express();
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));  // url에 한글이 포함되는 경우를 대비 
 
 app.use('/', pageRoutes);
 app.use('/api/auth', authRoutes);
