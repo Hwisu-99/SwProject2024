@@ -205,14 +205,3 @@
     }
     ```
 
-## 기여 방법
-
-1. 이 레포지토리를 포크합니다.
-2. 새로운 브랜치를 만듭니다 (`git checkout -b feature-branch`).
-3. 변경 사항을 커밋합니다 (`git commit -am 'Add new feature'`).
-4. 브랜치에 푸시합니다 (`git push origin feature-branch`).
-5. 풀 리퀘스트를 생성합니다.
-
-## 라이센스
-
-이 프로젝트는 MIT 라이센스를 따릅니다. 자세한 내용은 `LICENSE` 파일을 참고하세요.
