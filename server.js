@@ -1,6 +1,9 @@
 // 서버 초기화 및 설정 파일 
 const express = require('express');
 const bodyParser = require('body-parser');
+
+
+// 라우팅
 const pageRoutes = require('./routes/pageRoutes.js');
 const authRoutes = require('./routes/authRoutes.js');
 const groupRoutes = require('./routes/groupRoutes');
