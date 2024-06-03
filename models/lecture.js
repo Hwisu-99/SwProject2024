@@ -11,6 +11,10 @@ module.exports = class Lecture extends Sequelize.Model {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      lectureNumber: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       name: {
         type: Sequelize.STRING(10),
         allowNull: false,
@@ -28,5 +32,10 @@ module.exports = class Lecture extends Sequelize.Model {
   }
 
   static associate(db) {
+    db.Lecture.hasMany(db.Time);
+    db.Lecture.hasMany(db.Group);
+    db.Lecture.belongsTo(db.Professor);
+    db.Lecture.belongsTo(db.Major);
+    db.Lecture.belongsToMany(db.Student, { through: 'Student-Lecture' });
   }
 };

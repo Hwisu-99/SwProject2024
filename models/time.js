@@ -28,6 +28,6 @@ module.exports = class Time extends Sequelize.Model {
   }
 
   static associate(db) {
-
+    db.Time.belongsTo(db.Lecture);
   }
 };

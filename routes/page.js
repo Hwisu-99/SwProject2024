@@ -12,14 +12,14 @@ router.get('/', (req, res) => {
 router.get('/main', (req, res) => {
     res.send('여기는 메인페이지입니다')
 })
- 
+
 
 // GET : http://localhost:3000/main/group : 그룹페이지 가져옴
 router.get('/main/group', (req, res) => {
     res.send('여기는 그룹페이지입니다')
 })
- 
- 
+
+
 
 
 module.exports = router;

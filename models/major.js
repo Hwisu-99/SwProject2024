@@ -24,5 +24,8 @@ module.exports = class Major extends Sequelize.Model {
   }
 
   static associate(db) {
+    db.Major.hasMany(db.Student);
+    db.Major.hasMany(db.Lecture);
+    db.Major.hasMany(db.Professor);
   }
 };

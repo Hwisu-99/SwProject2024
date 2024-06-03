@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 const env = process.env.NODE_ENV || 'development';
-// [env] can be ['development'], ['test'], or ['production']
 const config = require('../config/config')[env];
 
 const Group = require('./group');
@@ -19,8 +18,6 @@ const sequelize = new Sequelize(
   config.password,
   config,
 );
-
-
 
 // input DB properties
 db.sequelize = sequelize;

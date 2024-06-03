@@ -30,5 +30,8 @@ module.exports = class Student extends Sequelize.Model {
   }
 
   static associate(db) {
+    db.Student.belongsTo(db.Major);
+    db.Student.belongsToMany(db.Lecture, { through: 'Student-Lecture' });
+    db.Student.belongsToMany(db.Group, { through: 'Student-Group' });
   }
 };
