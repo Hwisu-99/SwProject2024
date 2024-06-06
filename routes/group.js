@@ -86,14 +86,94 @@ router.get('/empty_time/:group_id', async (req, res, next) => {
 
         const times = await Time.findAll({
             where: { lecture_id: lectureIds },
-            attributes: ['id', 'startTime', 'endTime', 'dayOfWeek']
+            attributes: ['id', 'startTime', 'endTime', 'dayOfWeek'],
+            order: [
+                ['dayOfWeek', 'ASC'],
+                ['startTime', 'ASC'],
+            ],
         })
         if (times.length < 0) {
             res.status(401).send({ message: "Can not find time_id" });
         }
+
+        // times.forEach((time) => {
+        //     console.log(`ID: ${time.id}, startTime: ${time.startTime}, endTime: ${time.endTime}, dayOfWeek: ${time.dayOfWeek}`);
+        // });
+
+        const daySlots = {};
+        daySlots['monday'] = [];
+        daySlots['tuesday'] = [];
+        daySlots['wednesday'] = [];
+        daySlots['thursday'] = [];
+        daySlots['friday'] = [];
+        daySlots['saturday'] = [];
+        daySlots['sunday'] = [];
+
+        // missingSlots = [];
+        // missingSlots['monday'] = [];
+        // missingSlots['tuesday'] = [];
+        // missingSlots['wednesday'] = [];
+        // missingSlots['thursday'] = [];
+        // missingSlots['friday'] = [];
+        // missingSlots['saturday'] = [];
+        // missingSlots['sunday'] = [];
+
+        const missingSlots = {
+            monday: [],
+            tuesday: [],
+            wednesday: [],
+            thursday: [],
+            friday: [],
+            saturday: [],
+            sunday: []
+        };
+
         times.forEach((time) => {
-            console.log(`ID: ${time.id}, startTime: ${time.startTime}, endTime: ${time.endTime}, dayOfWeek: ${time.dayOfWeek}`);
+            const day = time.dayOfWeek;
+
+            // if (!daySlots[day]) {
+            //     daySlots[day] = [];
+            // }
+            daySlots[day].push({ startTime: time.startTime, endTime: time.endTime });
         });
+
+        for (const day in daySlots) {
+            startTime = '0000';
+            endTime = '0000'
+            if (daySlots[day].length) {
+                // at least one time, then push. ex) 0 ~ 1600
+                endTime = daySlots[day][0].startTime;
+                missingSlots[day].push({ startTime: startTime, endTime: endTime });
+                // missingSlots[day].push({ startTime: startTime, endTime: endTime, dayOfWeek: day });
+
+                startTime = daySlots[day][0].startTime;
+                endTime = daySlots[day][0].endTime;
+
+                if (daySlots[day].length == 1) {
+                    startTime = daySlots[day][0].endTime;
+                }
+            }
+
+            for (let i = 1; i < daySlots[day].length; i++) {
+                if (daySlots[day][i].startTime < endTime) {
+                    if (daySlots[day][i].endTime > endTime) {
+                        startTime = daySlots[day][i].endTime;
+                    }
+                } else {
+                    endTime = daySlots[day][i].startTime;
+                    missingSlots[day].push({ startTime: startTime, endTime: endTime });
+                    // missingSlots[day].push({ startTime: startTime, endTime: endTime, dayOfWeek: day });
+
+                    endTime = daySlots[day][i].endTime;
+                }
+            }
+            missingSlots[day].push({ startTime: endTime, endTime: "2400" });
+            // missingSlots[day].push({ startTime: startTime, endTime: "2400", dayOfWeek: day });
+
+        }
+
+        console.log(missingSlots);
+        res.status(201).json(missingSlots);
     } catch (err) {
         console.error(err);
         res.status(500).send({ message: "Error to find empty time" });
