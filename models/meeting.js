@@ -4,10 +4,9 @@ module.exports = class Meeting extends Sequelize.Model {
   static init(sequelize) {
     return super.init({
       link: {
-        type: Sequelize.STRING(50),
+        type: Sequelize.STRING(255),
         allowNull: false,
       },
-
     }, {
       sequelize,
       timestamps: false,
@@ -21,5 +20,6 @@ module.exports = class Meeting extends Sequelize.Model {
   }
 
   static associate(db) {
+    db.Meeting.belongsTo(db.Group,);                        
   }
 };

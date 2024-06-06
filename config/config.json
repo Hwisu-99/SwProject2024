@@ -4,7 +4,8 @@
     "password": "hwisuna2007*",
     "database": "team_management",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "define" :  {"timestamps" : false} 
   },
   "test": {
     "username": "root",

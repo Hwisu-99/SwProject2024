@@ -11,6 +11,7 @@
   const Time = require('./time');
 
   const db = {};
+  
   // input DB info into sequelize
   const sequelize = new Sequelize(
     config.database,

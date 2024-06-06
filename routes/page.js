@@ -13,7 +13,7 @@ router.get('/main', (req, res) => {
 })
 
 
-router.get('/main/group', (req, res) => {
+router.get('/group', (req, res) => {
     res.send('여기는 그룹페이지입니다')
 })
 
