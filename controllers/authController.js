@@ -1,5 +1,5 @@
 // 로그인 인증을 처리하는 컨트롤러 파일 
-const { Student } = require('../models');
+const { Student, Professor} = require('../models');
 const { generateToken } = require('../utils/jwt');
 
 const login = async (req, res) => {
@@ -8,12 +8,19 @@ const login = async (req, res) => {
   console.log("입력한 PassWord: ", password);
 
   try {
-    // id를 사용하여 데이터베이스에서 사용자 찾기
-    const user = await Student.findOne({ where: { eclassID: id } });
+    // id를 사용하여 데이터베이스에서 사용자 찾기 (학생 먼저)
+    let user = await Student.findOne({ where: { eclassID: id } });
+
+    // 학생이 없는 경우 교수님 테이블에서 찾기
+    if (!user) {
+      user = await Professor.findOne({ where: { eclassID: id } });
+    }
+
     // 사용자가 있는지 확인 
     if (!user) {
       return res.status(401).send('해당 아이디를 갖는 사용자는 존재하지 않습니다');
     }
+
     // 비밀번호가 일치하는지 확인
     if (user.eclassPW === password) {
       // 토큰 생성
