@@ -20,9 +20,12 @@ module.exports = class Group extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.Group.belongsToMany(db.Student, { through: 'Student-Group'});
-    db.Group.belongsTo(db.Professor);
-    db.Group.belongsTo(db.Lecture);
-    db.Group.hasMany(db.Meeting);
+    db.Group.belongsToMany(db.Student, { through: 'Student-Group' });
+    db.Group.belongsTo(db.Professor, {
+      foreignKey: { name: "professor_id", allowNull: false }, sourceKey: 'id'
+    });
+    db.Group.belongsTo(db.Lecture, {
+      foreignKey: { name: "lecture_id", allowNull: false }, sourceKey: 'id'
+    });
   }
 };
