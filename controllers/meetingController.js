@@ -1,7 +1,9 @@
 const { Meeting, Group, Student } = require('../models');
 
 const createGroupMeeting = async (req, res) => {
-  const studentId = req.query.student_id;
+  // todo
+  const studentId = req.params.lecture_id;
+  // const studentId = req.query.student_id;
   console.log(studentId);
 
   try {
@@ -11,8 +13,8 @@ const createGroupMeeting = async (req, res) => {
         through: { attributes: [] }
       }]
     });
-  
-  // 지금은 student가 속해있는 첫번째 그룹으로  .....  하지만 student가 속한 그룹이 하나 이상이라면??
+
+    // 지금은 student가 속해있는 첫번째 그룹으로  .....  하지만 student가 속한 그룹이 하나 이상이라면??
     console.log(result.Groups[0]);
     console.log(result.Groups[0].id);
 
@@ -26,7 +28,7 @@ const createGroupMeeting = async (req, res) => {
     // Meeting 테이블에 create (행 추가)
 
     res.status(201).json({ message: '그룹' + result.Groups[0].id + '에 meetingLink 추가 성공', link: meetingLink });
-  
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
@@ -36,7 +38,9 @@ const createGroupMeeting = async (req, res) => {
 
 // 사용자 아이디를 주면 그 그룹이 가지고 있는 미팅링크를 반환
 const getGroupMeeting = async (req, res) => {
-  const studentId = req.query.student_id;
+  // todo
+  // const studentId = req.query.student_id;
+  const studentId = req.params.lecture_id;
 
   // 먼저 학생이 속한 그룹 찾아 
   try {
@@ -46,14 +50,14 @@ const getGroupMeeting = async (req, res) => {
         through: { attributes: [] }
       }]
     });
-    
+
     console.log(result.Groups[0]);
 
-    const meeting_result = await Meeting.findAll({ where: { GroupId : result.Groups[0].id } });
+    const meeting_result = await Meeting.findAll({ where: { GroupId: result.Groups[0].id } });
     console.log(meeting_result);
 
-    res.status(201).json({ message: '사용자가 속해있는 그룹의 미팅링크 반환 성공', meeting_link : meeting_result});
-  
+    res.status(201).json({ message: '사용자가 속해있는 그룹의 미팅링크 반환 성공', meeting_link: meeting_result });
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
