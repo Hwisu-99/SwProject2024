@@ -30,8 +30,14 @@ module.exports = class User extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.Professor.hasMany(db.Group);
-    db.Professor.hasMany(db.Lecture);
-    db.Professor.belongsTo(db.Major);
+    db.Professor.hasMany(db.Group, {
+      foreignKey: { name: "professor_id", allowNull: true }, sourceKey: 'id', onDelete: "cascade", onUpdate: "cascade",
+    });
+    db.Professor.hasMany(db.Lecture, {
+      foreignKey: { name: "professor_id", allowNull: true }, sourceKey: 'id', onDelete: "cascade", onUpdate: "cascade",
+    });
+    db.Professor.belongsTo(db.Major, {
+      foreignKey: { name: "major_id", allowNull: false }, sourceKey: 'id', onDelete: "cascade", onUpdate: "cascade",
+    });
   }
 };

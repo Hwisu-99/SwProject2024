@@ -4,7 +4,7 @@ module.exports = class Lecture extends Sequelize.Model {
   static init(sequelize) {
     return super.init({
       name: {
-        type: Sequelize.STRING(15),
+        type: Sequelize.STRING(30),
         allowNull: false,
       },
       credit: {
@@ -14,6 +14,7 @@ module.exports = class Lecture extends Sequelize.Model {
       lectureNumber: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        unique: true,
       },
     }, {
       sequelize,
@@ -28,10 +29,18 @@ module.exports = class Lecture extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.Lecture.hasMany(db.Time);
-    db.Lecture.hasMany(db.Group);
-    db.Lecture.belongsTo(db.Professor);
-    db.Lecture.belongsTo(db.Major);
+    db.Lecture.hasMany(db.Time, {
+      foreignKey: { name: "lecture_id", allowNull: false }, sourceKey: 'id', onDelete: "cascade", onUpdate: "cascade",
+    });
+    db.Lecture.hasMany(db.Group, {
+      foreignKey: { name: "lecture_id", allowNull: true }, sourceKey: 'id', onDelete: "cascade", onUpdate: "cascade",
+    });
+    db.Lecture.belongsTo(db.Professor, {
+      foreignKey: { name: "professor_id", allowNull: false }, sourceKey: 'id', onDelete: "cascade", onUpdate: "cascade",
+    });
+    db.Lecture.belongsTo(db.Major, {
+      foreignKey: { name: "major_id", allowNull: false }, sourceKey: 'id', onDelete: "cascade", onUpdate: "cascade",
+    });
     db.Lecture.belongsToMany(db.Student, { through: 'Student-Lecture' });
   }
 };

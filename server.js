@@ -32,7 +32,7 @@ app.use('/meetings', meetingRouter);
 
 // 데이터베이스 동기화 (force로 설정시 데이터베이스의 테이블을 항상 새로 생성(기존 테이블 삭제하고 새로 만듦))
 // force: true -> re-create new table whenever ERD is chenaged. 
-sequelize.sync({ force: false })
+sequelize.sync({ force: true })
   .then(() => {
     console.log('DB connecdtion success');
   })

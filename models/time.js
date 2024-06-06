@@ -28,6 +28,9 @@ module.exports = class Time extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.Time.belongsTo(db.Lecture);
+    // db.Time.belongsTo(db.Lecture);
+    db.Time.belongsTo(db.Lecture, {
+      foreignKey: { name: "lecture_id", allowNull: false }, sourceKey: 'id'
+    });
   }
 };

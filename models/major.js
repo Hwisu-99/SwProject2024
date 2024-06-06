@@ -24,8 +24,14 @@ module.exports = class Major extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.Major.hasMany(db.Student);
-    db.Major.hasMany(db.Lecture);
-    db.Major.hasMany(db.Professor);
+    db.Major.hasMany(db.Student, {
+      foreignKey: { name: "major_id", allowNull: false }, sourceKey: 'id', onDelete: "cascade", onUpdate: "cascade",
+    });
+    db.Major.hasMany(db.Lecture, {
+      foreignKey: { name: "major_id", allowNull: false }, sourceKey: 'id', onDelete: "cascade", onUpdate: "cascade",
+    });
+    db.Major.hasMany(db.Professor, {
+      foreignKey: { name: "major_id", allowNull: false }, sourceKey: 'id', onDelete: "cascade", onUpdate: "cascade",
+    });
   }
 };

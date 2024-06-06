@@ -19,18 +19,30 @@
  *         schema:
  *           type: object
  *           properties:
- *             eclassID:
+ *             id:
  *               type: STRING
- *               maxLength: 30
- *             eclassPW:
+ *               maxLength: 40
+ *             password:
  *               type: STRING
- *               maxLength: 100
+ *               maxLength: 40
  *           example:
- *             eclassID: eclassID
- *             password : password!
+ *             id: some_eclassID
+ *             password : some_password!
  *     responses:
  *       201:
  *         description: Succeess to login
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 token:
+ *                   type: string
+ *                   description: JWT token
+ *       401:
+ *         description: Fail to finding ID
+ *       402:
+ *         description: Wrong Password
  *       500:
  *         description: Fail
  */
