@@ -1,9 +1,8 @@
 // 그룹 관련 라우트 파일
 const express = require('express');
 const { postGroup, getGroup, getGroupEmptyTime } = require('../controllers/groupController');
-const { createMeeting } = require('../controllers/meetingController');
 const authenticateJWT = require('../middleware/authenticateJWT');
-const { Group } = require('../models');
+const { Group, Student } = require('../models');
 
 const router = express.Router();
 
@@ -23,13 +22,13 @@ router.get('/:group_id', authenticateJWT, async (req, res, next) => {
         });
 });
 
-// router.post('/:group_id/:student_id:', authenticateJWT, async (req, res, next) => {
-router.post('/:group_id/:student_id:', async (req, res, next) => {
+// router.post('/:group_id/:student_id', authenticateJWT, async (req, res, next) => {
+router.post('/:group_id/:student_id', async (req, res, next) => {
     console.log("@@@@@")
     try {
         const group = await Group.findOne({
             where: {
-                id: req.params.lecture_id,
+                id: req.params.group_id,
             }
         });
         if (!group) {
