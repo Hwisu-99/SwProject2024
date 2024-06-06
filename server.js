@@ -1,9 +1,3 @@
-/* TODO
-<Hwisu>
-<Junseo>
-<Common>
-*/
-
 const express = require('express');
 const dotenv = require('dotenv');
 const path = require('path');
@@ -16,6 +10,7 @@ const pageRouter = require('./routes/page');
 const authRouter = require('./routes/auth');
 const groupRouter = require('./routes/group');
 const meetingRouter = require('./routes/meeting');
+const lectureRouter = require('./routes/lecture');
 
 const { swaggerUi, swaggerSpec } = require('./swagger');
 const { sequelize } = require("./models");
@@ -29,10 +24,11 @@ app.use('/page', pageRouter);
 app.use('/auth', authRouter);
 app.use('/groups', groupRouter);
 app.use('/meetings', meetingRouter);
+app.use('/lecture', lectureRouter);
 
 // 데이터베이스 동기화 (force로 설정시 데이터베이스의 테이블을 항상 새로 생성(기존 테이블 삭제하고 새로 만듦))
 // force: true -> re-create new table whenever ERD is chenaged. 
-sequelize.sync({ force: false })
+sequelize.sync({ force: true })
   .then(() => {
     console.log('DB connecdtion success');
   })

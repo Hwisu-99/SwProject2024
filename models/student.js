@@ -12,7 +12,7 @@ module.exports = class Student extends Sequelize.Model {
       eclassPW: {
         type: Sequelize.STRING(40),
         allowNull: true,
-        unique: true,
+        unique: false,
       },
       name: {
         type: Sequelize.STRING(15),
@@ -31,7 +31,9 @@ module.exports = class Student extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.Student.belongsTo(db.Major);
+    db.Student.belongsTo(db.Major, {
+      foreignKey: { name: "major_id", allowNull: false }, sourceKey: 'id', onDelete: "cascade", onUpdate: "cascade",
+    });
     db.Student.belongsToMany(db.Lecture, { through: 'Student-Lecture' });
     db.Student.belongsToMany(db.Group, { through: 'Student-Group' });
   }

@@ -1,4 +1,3 @@
-// 사용자 인증 관련 라우트 파일
 const express = require('express');
 const authenticateJWT = require('../middleware/authenticateJWT');
 const { login, logout } = require('../controllers/authController');

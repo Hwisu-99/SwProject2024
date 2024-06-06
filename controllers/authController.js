@@ -4,8 +4,8 @@ const { generateToken } = require('../utils/jwt');
 
 const login = async (req, res) => {
   const { id, password } = req.body;
-  console.log("입력한 ID: ",id);
-  console.log("입력한 PassWord: ",password);
+  console.log("입력한 ID: ", id);
+  console.log("입력한 PassWord: ", password);
 
   try {
     // id를 사용하여 데이터베이스에서 사용자 찾기
@@ -21,7 +21,7 @@ const login = async (req, res) => {
       res.json({ message: '로그인 성공', token });
 
     } else {
-      res.status(401).send('잘못된 비밀번호입니다');
+      res.status(402).send('잘못된 비밀번호입니다');
     }
   } catch (err) {
     console.error(err);

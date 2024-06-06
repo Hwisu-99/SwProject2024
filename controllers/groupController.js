@@ -1,38 +1,30 @@
 // 그룹 관련 기능을 처리하는 컨트롤러 파일 
 const { Group, Student, Lecture } = require('../models');
 
-// const getGroup = (req, res) => {
-//   const userId = req.user.id;
-//   Group.findByUserId(userId, (err, group) => {
-//     if (err) return res.status(500).send(err);
-//     res.json(group);
-//   });
-// };
-
-// const getSchedule = (req, res) => {
-//   const groupId = req.user.groupId;
-//   Group.getSchedule(groupId, (err, schedule) => {
-//     if (err) return res.status(500).send(err);
-//     res.json({ schedule });
-//   });
-// };
-
-// module.exports = { getGroup, getSchedule };
-
 const postGroup = (req, res) => {
-  Group.create({
-    lecture_id: req.params.lecture_id,
-    user_id: req.body.user_id,
-    name: req.body.name,
+  Group.findOne({
+    where: {
+    }
   })
     .then(result => {
-      res.status(201).send({
-        message: "Success to create group with lecture_id=" + req.params.lecture_id
-      });
+      if (result != null) {
+        return res.status(501).send({
+          message: "Already have the group"
+        });
+      } else {
+        Group.create({
+
+        })
+          .then(result => {
+            res.status(201).send({
+              message: "Success to create Group"
+            });
+          })
+      }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error to create group with lecture_id=" + req.params.lecture_id
+        message: "Error to create Group"
       });
       console.log(err);
     });

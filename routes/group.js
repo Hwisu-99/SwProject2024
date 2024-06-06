@@ -3,7 +3,6 @@ const express = require('express');
 const { postGroup, getGroup, getGroupEmptyTime } = require('../controllers/groupController');
 const { createMeeting } = require('../controllers/meetingController');
 const authenticateJWT = require('../middleware/authenticateJWT');
-const { authPlugins } = require('mysql2');
 
 const router = express.Router();
 
