@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/page', pageRouter);
 app.use('/auth', authRouter);
-app.use('/groups', groupRouter);
+app.use('/group', groupRouter);
 app.use('/meetings', meetingRouter);
 app.use('/lecture', lectureRouter);
 

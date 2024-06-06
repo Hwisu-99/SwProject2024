@@ -127,5 +127,5 @@
  *                 description:
  *                   type: string
  *       500:
- *         description: Fail
+*         description: Fail
  */
