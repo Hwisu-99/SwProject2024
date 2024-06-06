@@ -17,11 +17,11 @@ module.exports = class Time extends Sequelize.Model {
       }
     }, {
       sequelize,
-      timestamps: true,
+      timestamps: false,
       underscored: false,
       modelName: 'Time',
       tableName: 'times',
-      paranoid: true,
+      paranoid: false,
       charset: 'utf8',
       collate: 'utf8_general_ci',
     });

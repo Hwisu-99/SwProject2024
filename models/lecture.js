@@ -15,17 +15,13 @@ module.exports = class Lecture extends Sequelize.Model {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      name: {
-        type: Sequelize.STRING(10),
-        allowNull: false,
-      },
     }, {
       sequelize,
-      timestamps: true,
+      timestamps: false,
       underscored: false,
       modelName: 'Lecture',
       tableName: 'lectures',
-      paranoid: true,
+      paranoid: false,
       charset: 'utf8',
       collate: 'utf8_general_ci',
     });

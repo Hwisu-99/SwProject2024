@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 
+
 module.exports = class Student extends Sequelize.Model {
   static init(sequelize) {
     return super.init({
@@ -19,11 +20,11 @@ module.exports = class Student extends Sequelize.Model {
       },
     }, {
       sequelize,
-      timestamps: true,
+      timestamps: false,
       underscored: false,
       modelName: 'Student',
       tableName: 'students',
-      paranoid: true,
+      paranoid: false,
       charset: 'utf8',
       collate: 'utf8_general_ci',
     });
@@ -34,4 +35,5 @@ module.exports = class Student extends Sequelize.Model {
     db.Student.belongsToMany(db.Lecture, { through: 'Student-Lecture' });
     db.Student.belongsToMany(db.Group, { through: 'Student-Group' });
   }
+
 };

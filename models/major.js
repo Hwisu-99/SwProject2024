@@ -13,11 +13,11 @@ module.exports = class Major extends Sequelize.Model {
       },
     }, {
       sequelize,
-      timestamps: true,
+      timestamps: false,
       underscored: false,
       modelName: 'Major',
       tableName: 'majors',
-      paranoid: true,
+      paranoid: false,
       charset: 'utf8',
       collate: 'utf8_general_ci',
     });

@@ -3,21 +3,18 @@ const Sequelize = require('sequelize');
 module.exports = class Meeting extends Sequelize.Model {
   static init(sequelize) {
     return super.init({
-      name: {
-        type: Sequelize.STRING(15),
+      link: {
+        type: Sequelize.STRING(50),
         allowNull: false,
       },
-      department: {
-        type: Sequelize.STRING(15),
-        allowNull: false,
-      },
+
     }, {
       sequelize,
-      timestamps: true,
+      timestamps: false,
       underscored: false,
       modelName: 'Meeting',
       tableName: 'meetings',
-      paranoid: true,
+      paranoid: false,
       charset: 'utf8',
       collate: 'utf8_general_ci',
     });

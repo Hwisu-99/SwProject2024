@@ -30,8 +30,9 @@ app.use('/auth', authRouter);
 app.use('/groups', groupRouter);
 app.use('/meetings', meetingRouter);
 
+// 데이터베이스 동기화 (force로 설정시 데이터베이스의 테이블을 항상 새로 생성(기존 테이블 삭제하고 새로 만듦))
 // force: true -> re-create new table whenever ERD is chenaged. 
-sequelize.sync({ force: true })
+sequelize.sync({ force: false })
   .then(() => {
     console.log('DB connecdtion success');
   })
@@ -50,6 +51,7 @@ app.use((req, res, next) => {
   error.status = 404;
   next(error);
 });
+
 app.use((err, req, res, next) => {
   res.locals.message = err.message;
   res.locals.error = process.env.NODE_ENV !== 'production' ? err : {};
