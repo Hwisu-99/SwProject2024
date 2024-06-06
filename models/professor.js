@@ -31,7 +31,7 @@ module.exports = class User extends Sequelize.Model {
 
   static associate(db) {
     db.Professor.hasMany(db.Group, {
-      foreignKey: { name: "professor_id", allowNull: true }, sourceKey: 'id', onDelete: "cascade", onUpdate: "cascade",
+      foreignKey: { name: "professor_id", allowNull: false }, sourceKey: 'id', onDelete: "cascade", onUpdate: "cascade",
     });
     db.Professor.hasMany(db.Lecture, {
       foreignKey: { name: "professor_id", allowNull: true }, sourceKey: 'id', onDelete: "cascade", onUpdate: "cascade",

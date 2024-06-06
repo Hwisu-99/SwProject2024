@@ -2,19 +2,29 @@
 const { Group, Student, Lecture } = require('../models');
 
 const postGroup = (req, res) => {
-  Group.create({
-    lecture_id: req.params.lecture_id,
-    user_id: req.body.user_id,
-    name: req.body.name,
+  Group.findOne({
+    where: {
+    }
   })
     .then(result => {
-      res.status(201).send({
-        message: "Success to create group with lecture_id=" + req.params.lecture_id
-      });
+      if (result != null) {
+        return res.status(501).send({
+          message: "Already have the group"
+        });
+      } else {
+        Group.create({
+
+        })
+          .then(result => {
+            res.status(201).send({
+              message: "Success to create Group"
+            });
+          })
+      }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error to create group with lecture_id=" + req.params.lecture_id
+        message: "Error to create Group"
       });
       console.log(err);
     });

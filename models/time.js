@@ -14,6 +14,7 @@ module.exports = class Time extends Sequelize.Model {
       dayOfWeek: {
         type: Sequelize.STRING(10),
         allowNull: false,
+        unique: true,
       }
     }, {
       sequelize,
