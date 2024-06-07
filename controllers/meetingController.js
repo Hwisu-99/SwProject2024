@@ -3,8 +3,8 @@ const { Meeting, Group, Student } = require('../models');
 // 학생이 온라인 미팅생성 버튼을 눌러 그룹 미팅 생성 
 const createGroupMeeting = async (req, res) => {
   // todo
-  // const studentId = req.params.lecture_id;
-  const studentId = req.query.student_id;
+  const studentId = req.params.student_id;
+  // const studentId = req.query.student_id;
   console.log(studentId);
 
   try {
@@ -19,7 +19,7 @@ const createGroupMeeting = async (req, res) => {
     // student가 하나의 그룹에만 속해 있다면 문제가 안됨 (학생이 하나의 그룹에만 속해있을 때 정상 작동)
 
     console.log(student_result.Groups[0]);
-    console.log(student_result.Groups[0].id);
+    console.log(student_result.Groups[0].id); 
 
     if (!student_result.Groups) {
       return res.status(404).json({ message: 'Group not found' });
@@ -46,8 +46,8 @@ const createGroupMeeting = async (req, res) => {
 // 학생 아이디(박민수)를 주면 그 그룹(박민수가 속해있는 그룹 ex.1조)이 가지고 있는 미팅링크를 반환
 const getGroupMeeting = async (req, res) => {
   // todo
-  const studentId = req.query.student_id;
-  // const studentId = req.params.lecture_id;
+  // const studentId = req.query.student_id;
+  const studentId = req.params.student_id;
 
   try {
     const student_result = await Student.findByPk(studentId, {
