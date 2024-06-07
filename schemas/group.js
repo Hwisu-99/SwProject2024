@@ -7,32 +7,25 @@
 
 /**
  * @swagger
- * /group/{lecture_id}:
- *   post:
+ * /group/{group_id}:
+ *   delete:
  *     tags:
  *       - Group
- *     name: Create Group
- *     description: Create Group
+ *     name: Delete Group
+ *     description: Delete Group
  *     parameters:
- *       - name: user_id
- *         in: body
- *         schema:
- *           type: array
- *           properties:
- *             user_id:
- *               type: integer
- *           example:
- *             user_id: 1
- *       - name: lecture_id
+ *       - name: group_id
  *         in: path
  *         required: true
  *         schema:
  *           type: integer
  *           example:
- *               lecture_id: 1
+ *               group_id: 1
  *     responses:
- *       201:
- *         description: Succeess
+ *       200:
+ *         description: Succeess to delete
+ *       404:
+ *         description: Fail to find the group
  *       500:
  *         description: Fail
  */

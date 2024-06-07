@@ -102,7 +102,7 @@
   INSERT INTO `student-group` (studentId, groupId) VALUES (7, 2);
   INSERT INTO `student-group` (studentId, groupId) VALUES (8, 2);
   ```
-
+  
 5. Set `config.joson`file in config dir
     ```plaintext
     "development": {

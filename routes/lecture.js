@@ -4,9 +4,7 @@ const { getLecture, getLectureTime, addLectureStudent } = require('../controller
 const router = express.Router();
 
 router.get('/:lecture_id', authenticateJWT, getLecture);
-
 router.get('/time/:lecture_id', authenticateJWT, getLectureTime);
-
 router.post('/:lecture_id/:student_id', authenticateJWT, addLectureStudent);
 
 module.exports = router;

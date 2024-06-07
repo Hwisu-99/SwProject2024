@@ -62,33 +62,3 @@
  *       500:
  *         description: Fail
  */
-
-/**
- * @swagger
- * /auth/{user_id}/{lecture_id}:
- *   get:
- *     tags:
- *       - Auth
- *     name: PostLecIntoUser
- *     description: post a lectre info ito a user
- *     parameters:
- *       - name: user_id
- *         in: path
- *         required: true
- *         schema:
- *           type: integer
- *           example:
- *               user_id: 1
- *       - name: lecture_id
- *         in: path
- *         required: true
- *         schema:
- *           type: integer
- *           example:
- *               lecture_id: 1
- *     responses:
- *       201:
- *         description: Succeess
- *       500:
- *         description: Fail
- */

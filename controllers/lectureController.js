@@ -1,9 +1,8 @@
 // 로그인 인증을 처리하는 컨트롤러 파일 
-const { Lecture, Time} = require('../models');
-
+const { Lecture, Time, Student } = require('../models');
 
 // 강의 정보 조회 
-const getLecture =  async (req, res, next) => {
+const getLecture = async (req, res, next) => {
     Lecture.findOne({
         where: {
             id: req.params.lecture_id,
@@ -15,7 +14,7 @@ const getLecture =  async (req, res, next) => {
         .catch(err => {
             res.status(500).send();
         });
-  }
+}
 
 
 // 강의 시간 조회
@@ -30,7 +29,7 @@ const getLectureTime = async (req, res, next) => {
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error to read memo with memo_id=" + req.params.lecture_id
+                message: "Error"
             });
         });
 }
@@ -64,4 +63,4 @@ const addLectureStudent = async (req, res, next) => {
     }
 }
 
-module.exports = { getLecture, getLectureTime, addLectureStudent};
+module.exports = { getLecture, getLectureTime, addLectureStudent };

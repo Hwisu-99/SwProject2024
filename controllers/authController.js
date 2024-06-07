@@ -1,5 +1,5 @@
 // 로그인 인증을 처리하는 컨트롤러 파일 
-const { Student, Professor} = require('../models');
+const { Student, Professor } = require('../models');
 const { generateToken } = require('../utils/jwt');
 
 const login = async (req, res) => {
@@ -20,7 +20,7 @@ const login = async (req, res) => {
     if (!user) {
       return res.status(401).send('해당 아이디를 갖는 사용자는 존재하지 않습니다');
     }
-    
+
     // 비밀번호가 일치하는지 확인
     if (user.eclassPW === password) {
       // 토큰 생성
@@ -39,7 +39,7 @@ const login = async (req, res) => {
 const logout = async (req, res) => {
   try {
     // 클라이언트 측에서 토큰을 삭제하도록 응답
-    res.json({ message: '로그아웃 성공' });
+    res.status(201).json({ message: '로그아웃 성공' });
   } catch (err) {
     console.error(err);
     res.status(500).send('서버 오류');
@@ -47,4 +47,4 @@ const logout = async (req, res) => {
 };
 
 
-module.exports = { login, logout};
+module.exports = { login, logout };
