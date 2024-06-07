@@ -1,149 +1,127 @@
 # GroupPageTest
 
-## 설치 및 이용 방법
+## How to install and use
+1. Clone the repository
 
-1. 이 레포지토리를 클론합니다
-
-2. 필요한 패키지를 설치합니다:
-
+2. Install packages
     ```sh
-    npm install express mysql2 dotenv jsonwebtoken body-parser
+    npm install express mysql2 dotenv jsonwebtoken body-parser 
+    npm install swagger-jsdoc swagger-ui-express --save-dev
     ```
-
-3. MySQL에서 데이터베이스와 테이블을 생성합니다(API 실험용):
+3. Create Database on local mysql:
 
     ```sql
-    CREATE DATABASE team_management;
-
-    USE team_management;
-
-    CREATE TABLE users (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      name VARCHAR(255) NOT NULL,
-      email VARCHAR(255) NOT NULL UNIQUE,
-      password VARCHAR(255) NOT NULL
-    );
-
-    CREATE TABLE user_groups (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      name VARCHAR(255) NOT NULL
-    );
-
-    CREATE TABLE meetings (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      user_id INT NOT NULL,
-      link VARCHAR(255) NOT NULL,
-      FOREIGN KEY (user_id) REFERENCES users(id)
-    );
-
-    CREATE TABLE schedules (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      user_id INT NOT NULL,
-      time_slot VARCHAR(255) NOT NULL,
-      FOREIGN KEY (user_id) REFERENCES users(id)
-    );
-
-    CREATE TABLE group_members (
-      group_id INT NOT NULL,
-      user_id INT NOT NULL,
-      FOREIGN KEY (group_id) REFERENCES user_groups(id),
-      FOREIGN KEY (user_id) REFERENCES users(id)
-    );
+    CREATE DATABASE eclassDB;
+    USE eclassDB;
     ```
 
-4. 초기 데이터 삽입(API실험용):
+4. Insert initial Datas
 
-    ```sql
-    -- users 데이터 삽입
-    INSERT INTO users (name, email, password) VALUES ('John Doe', 'john@example.com', 'password123');
-    INSERT INTO users (name, email, password) VALUES ('Jane Smith', 'jane@example.com', 'password123');
-    INSERT INTO users (name, email, password) VALUES ('Alice Johnson', 'alice@example.com', 'password123');
+  ```sql
+  INSERT INTO majors(name, department) VALUES('소프트웨어학과', '소프트웨어학부');
+  INSERT INTO majors(name, department) VALUES('전자전기공학부', '창의ICT공과대학');
 
-    -- user_groups 데이터 삽입
-    INSERT INTO user_groups (name) VALUES ('Development Team');
-    INSERT INTO user_groups (name) VALUES ('Marketing Team');
+  INSERT INTO students(eclassID, eclassPW, name, major_id) VALUES('kim_studentID', 'kim_studentPW!', '김하나', '1');
+  INSERT INTO students(eclassID, eclassPW, name, major_id) VALUES('park_studentID', 'park_studentPW!', '박민수', '2');
+  INSERT INTO students(eclassID, eclassPW, name, major_id) VALUES('lee_studentID', 'lee_studentPW!', '이준호', '1');
+  INSERT INTO students(eclassID, eclassPW, name, major_id) VALUES('choi_studentID', 'choi_studentPW!', '최서연', '2');
+  INSERT INTO students(eclassID, eclassPW, name, major_id) VALUES('jung_studentID', 'jung_studentPW!', '정현우', '1');
+  INSERT INTO students(eclassID, eclassPW, name, major_id) VALUES('sung_studentID', 'sung_studentPW!', '성지호', '1');
+  INSERT INTO students(eclassID, eclassPW, name, major_id) VALUES('son_studentID', 'son_studentPW!', '손수연', '1');
+  INSERT INTO students(eclassID, eclassPW, name, major_id) VALUES('moon_studentID', 'moon_studentPW!', '문지효', '2');
 
-    -- group_members 데이터 삽입
-    INSERT INTO group_members (group_id, user_id) VALUES (1, 1); -- John Doe in Development Team
-    INSERT INTO group_members (group_id, user_id) VALUES (1, 2); -- Jane Smith in Development Team
-    INSERT INTO group_members (group_id, user_id) VALUES (2, 3); -- Alice Johnson in Marketing Team
 
-    -- schedules 데이터 삽입
-    INSERT INTO schedules (user_id, time_slot) VALUES (1, 'Monday 10-12'); -- John Doe
-    INSERT INTO schedules (user_id, time_slot) VALUES (2, 'Monday 14-16'); -- Jane Smith
-    INSERT INTO schedules (user_id, time_slot) VALUES (3, 'Tuesday 10-12'); -- Alice Johnson
-    ```
+  INSERT INTO professors(eclassID, eclassPW, name, major_id) VALUES('kim_professorID', 'kim_professorPW!', '김민철', '1');
+  INSERT INTO professors(eclassID, eclassPW, name, major_id) VALUES('kang_professorID', 'kang_professorPW!', '강서훈', '1');
+  INSERT INTO professors(eclassID, eclassPW, name, major_id) VALUES('sin_professorID', 'sin_professorPW!', '신서희', '1');
+  INSERT INTO professors(eclassID, eclassPW, name, major_id) VALUES('kang_professorID2', 'kang_professorPW!', '강훈', '2');
 
-5. `.env` 파일을 생성하고 다음과 같이 설정합니다:
+  INSERT INTO lectures(name, credit, lectureNumber, professor_id, major_id) VALUES('운영체제', '3', '301', '1', '1');
+  INSERT INTO lectures(name, credit, lectureNumber, professor_id, major_id) VALUES('알고리즘', '3', '302', '4', '2');
+  INSERT INTO lectures(name, credit, lectureNumber, professor_id, major_id) VALUES('소프트웨어공학', '3', '303', '2', '1');
+  INSERT INTO lectures(name, credit, lectureNumber, professor_id, major_id) VALUES('자료구조', '3', '201', '2', '1');
+  INSERT INTO lectures(name, credit, lectureNumber, professor_id, major_id) VALUES('머신러닝', '3', '401', '3', '1');
 
+
+  INSERT INTO times (startTime, endTime, dayOfWeek, lecture_id) VALUES ('1500', '1700', 'monday', '1');
+  INSERT INTO times (startTime, endTime, dayOfWeek, lecture_id) VALUES ('1500', '1500', 'wednesday', '1');
+
+  INSERT INTO times (startTime, endTime, dayOfWeek, lecture_id) VALUES ('1400', '1600', 'tuesday', '2');
+  INSERT INTO times (startTime, endTime, dayOfWeek, lecture_id) VALUES ('1600', '1700', 'thursday', '2');
+
+  INSERT INTO times (startTime, endTime, dayOfWeek, lecture_id) VALUES ('1400', '1800', 'monday', '3');
+  INSERT INTO times (startTime, endTime, dayOfWeek, lecture_id) VALUES ('1200', '1400', 'wednesday', '3');
+
+  INSERT INTO times (startTime, endTime, dayOfWeek, lecture_id) VALUES ('1900', '2100', 'tuesday', '4');
+  INSERT INTO times (startTime, endTime, dayOfWeek, lecture_id) VALUES ('1300', '1400', 'thursday', '4');
+
+  INSERT INTO times (startTime, endTime, dayOfWeek, lecture_id) VALUES ('1030', '1530', 'friday', '5');
+
+
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (1, 1);
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (1, 2);
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (1, 5);
+
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (2, 1);
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (2, 3);
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (2, 5);
+
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (3, 1);
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (3, 2);
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (3, 3);
+
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (4, 2);
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (4, 3);
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (4, 4);
+
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (5, 1);
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (5, 4);
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (5, 5);
+
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (6, 3);
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (6, 4);
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (6, 5);
+
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (7, 2);
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (7, 3);
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (7, 5);
+
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (8, 3);
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (8, 4);
+  INSERT INTO `student-lecture` (studentId, lectureId) VALUES (8, 5);
+
+  INSERT INTO `groups` (name, professor_id, lecture_id) VALUES ('1조', 2, 3);
+  INSERT INTO `groups` (name, professor_id, lecture_id) VALUES ('2조', 2, 3);
+
+  INSERT INTO `student-group` (studentId, groupId) VALUES (1, 1);
+  INSERT INTO `student-group` (studentId, groupId) VALUES (2, 1);
+  INSERT INTO `student-group` (studentId, groupId) VALUES (3, 2);
+  INSERT INTO `student-group` (studentId, groupId) VALUES (4, 1);
+  INSERT INTO `student-group` (studentId, groupId) VALUES (5, 1);
+  INSERT INTO `student-group` (studentId, groupId) VALUES (6, 2);
+  INSERT INTO `student-group` (studentId, groupId) VALUES (7, 2);
+  INSERT INTO `student-group` (studentId, groupId) VALUES (8, 2);
+  ```
+
+5. Set `config.joson`file in config dir
     ```plaintext
-    DB_HOST=localhost
-    DB_USER=yourDatabaseUser
-    DB_PASSWORD=yourDatabasePassword
-    DB_NAME=team_management
-
-    JWT_SECRET=yourSuperSecretKey
-
-    PORT=3000
+    "development": {
+        "username": "root",
+         "password": "",
+         "database": "eclassDB",
+         "host": "127.0.0.1",
+          "dialect": "mysql",
+         "define" :  {"timestamps" : false} 
+    },
     ```
 
-6. 서버를 시작합니다:
-
+6. start server:
     ```sh
     npm start
     ```
 
-    서버가 실행 중이면, `http://localhost:3000`에서 API를 사용할 수 있습니다.
+    then, you can use API 
+    by acceessing `http://localhost:8001`
 
-## API 사용 방법
-
-### 사용자 인증
-
-#### 로그인
-
-- **URL**: `/api/auth/login`
-- **Method**: POST
-- **Request Body**:
-
-    ```json
-    {
-      "email": "john@example.com",
-      "password": "password123"
-    }
-    ```
-
-- **Response**:
-
-    ```json
-    {
-      "token": "jwt-token-string"
-    }
-    ```
-
-### 그룹 관리
-
-#### 그룹 정보 조회
-
-- **URL**: `/api/groups`
-- **Method**: GET
-- **Headers**:
-    - `Authorization`: `Bearer jwt-token-string`
-
-- **Response**:
-
-    ```json
-    {
-      "id": 1,
-      "name": "Development Team",
-      "members": [
-        {
-          "id": 1,
-          "name": "John Doe"
-        },
-        {
-          "id": 2,
-          "name": "Jane Smith"
-        }
-      ]
-    }
-    ```
+## API-docs
+1. access `http://localhost:8001/api-docs`
