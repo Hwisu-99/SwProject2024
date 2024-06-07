@@ -20,6 +20,8 @@ module.exports = class Meeting extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.Meeting.belongsTo(db.Group,);                        
+    db.Meeting.belongsTo(db.Group, {
+      foreignKey: { name: "group_id", allowNull: false }, sourceKey: 'id'
+    });
   }
 };

@@ -27,5 +27,8 @@ module.exports = class Group extends Sequelize.Model {
     db.Group.belongsTo(db.Lecture, {
       foreignKey: { name: "lecture_id", allowNull: false }, sourceKey: 'id'
     });
+    db.Group.hasMany(db.Meeting, {
+      foreignKey: { name: "group_id", allowNull: true }, sourceKey: 'id', onDelete: "cascade", onUpdate: "cascade",
+    });
   }
 };
