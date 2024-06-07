@@ -8,13 +8,19 @@
 
 /**
  * @swagger
- * /meetings/open/{student_id}:
- *   get:
+ * /meetings/open/{lecture_id}/{student_id}:
+ *   post:
  *     tags:
  *       - Meeting
  *     name: 사용자가 속한 그룹의 온라인 미팅을 생성 
  *     description: 사용자가 속한 그룹의 온라인 미팅을 생성 
  *     parameters:
+ *       - name: lecture_id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           example: 1
  *       - name: student_id
  *         in: path
  *         required: true
@@ -50,13 +56,19 @@
 
 /**
  * @swagger
- * /meetings/get/{student_id}:
+ * /meetings/{lecture_id}/{student_id}:
  *   get:
  *     tags:
  *       - Meeting
  *     name: 사용자가 속한 그룹에 온라인 미팅이 있다면 미팅 링크를 반환 
  *     description: 사용자가 속한 그룹에 온라인 미팅이 있다면 미팅 링크를 반환 
  *     parameters:
+ *       - name: lecture_id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           example: 1
  *       - name: student_id
  *         in: path
  *         required: true
