@@ -9,8 +9,7 @@
     npm install swagger-jsdoc swagger-ui-express --save-dev
     ```
 
-3. Set `config.joson`file in config dir
-   "password" should be your mysql password.
+3. Set `config.joson`file in config dir. "password" should be your mysql password.
     ```plaintext
     "development": {
         "username": "root",
