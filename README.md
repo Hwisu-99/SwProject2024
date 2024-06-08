@@ -22,10 +22,17 @@
     },
     ```
 
-5. Create Database on local mysql:
+4. Start server:
+    ```sh
+    npm start
+    ```
+
+    then, you can use API 
+    by acceessing `http://localhost:8001`
+
+5. Set using DB on your local mysql:
 
     ```sql
-    CREATE DATABASE eclassDB;
     USE eclassDB;
     ```
 
@@ -117,13 +124,6 @@
   INSERT INTO `student-group` (studentId, groupId) VALUES (8, 2);
   ```
 
-6. start server:
-    ```sh
-    npm start
-    ```
-
-    then, you can use API 
-    by acceessing `http://localhost:8001`
 
 ## API-docs
 1. access `http://localhost:8001/api-docs`
