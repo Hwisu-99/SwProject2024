@@ -8,14 +8,28 @@
     npm install express mysql2 dotenv jsonwebtoken body-parser 
     npm install swagger-jsdoc swagger-ui-express --save-dev
     ```
-3. Create Database on local mysql:
+
+3. Set `config.joson`file in config dir
+   "password" should be your mysql password.
+    ```plaintext
+    "development": {
+        "username": "root",
+         "password": "",
+         "database": "eclassDB",
+         "host": "127.0.0.1",
+          "dialect": "mysql",
+         "define" :  {"timestamps" : false} 
+    },
+    ```
+
+5. Create Database on local mysql:
 
     ```sql
     CREATE DATABASE eclassDB;
     USE eclassDB;
     ```
 
-4. Insert initial Datas
+6. Insert initial Datas
 
   ```sql
   INSERT INTO majors(name, department) VALUES('소프트웨어학과', '소프트웨어학부');
@@ -102,18 +116,6 @@
   INSERT INTO `student-group` (studentId, groupId) VALUES (7, 2);
   INSERT INTO `student-group` (studentId, groupId) VALUES (8, 2);
   ```
-  
-5. Set `config.joson`file in config dir
-    ```plaintext
-    "development": {
-        "username": "root",
-         "password": "",
-         "database": "eclassDB",
-         "host": "127.0.0.1",
-          "dialect": "mysql",
-         "define" :  {"timestamps" : false} 
-    },
-    ```
 
 6. start server:
     ```sh
