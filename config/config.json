@@ -1,11 +1,11 @@
 {
   "development": {
-    "username": "root",
-    "password": "",
-    "database": "eclass_schema",
+    "username": "myoungjinoh",
+    "password": "018277",
+    "database": "eclassDB",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "define" :  {"timestamps" : false} 
+    "define": { "timestamps": false }
   },
   "test": {
     "username": "root",
