@@ -10,6 +10,7 @@ const bodyParser = require("body-parser");
 const pageRouter = require("./routes/page");
 const authRouter = require("./routes/auth");
 const groupRouter = require("./routes/group");
+const studentRouter = require("./routes/student");
 const meetingRouter = require("./routes/meeting");
 const lectureRouter = require("./routes/lecture");
 
@@ -25,6 +26,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/page", pageRouter);
 app.use("/auth", authRouter);
 app.use("/group", groupRouter);
+app.use("/student", studentRouter);
 app.use("/meetings", meetingRouter);
 app.use("/lecture", lectureRouter);
 
