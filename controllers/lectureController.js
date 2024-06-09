@@ -16,6 +16,16 @@ const getLecture = async (req, res, next) => {
         });
 }
 
+// 모든 강의 정보 한번에 불러오기
+const getAllLecture = async (req, res, next) => {
+    try {
+        const lectures = await Lecture.findAll(); 
+        res.status(200).send(lectures); 
+      } catch (err) {
+        console.error(err); 
+        res.status(500).send({ message: 'Server error' }); 
+      }
+}
 
 // 강의 시간 조회
 const getLectureTime = async (req, res, next) => {
@@ -63,4 +73,4 @@ const addLectureStudent = async (req, res, next) => {
     }
 }
 
-module.exports = { getLecture, getLectureTime, addLectureStudent };
+module.exports = { getLecture, getAllLecture, getLectureTime, addLectureStudent };
