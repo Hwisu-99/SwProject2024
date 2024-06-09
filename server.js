@@ -18,7 +18,7 @@ const { sequelize } = require("./models");
 
 const app = express();
 app.set("port", process.env.PORT || 8001);
-app.use(cors());
+app.use(cors({ origin: true, credentials: true }));
 
 app.use(bodyParser.json());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
