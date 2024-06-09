@@ -1,15 +1,15 @@
-// 그룹 관련 기능을 처리하는 컨트롤러 파일 
-const { Group, Student, Lecture, Time } = require('../models');
+// 그룹 관련 기능을 처리하는 컨트롤러 파일
+const { Group, Student, Lecture, Time } = require("../models");
 
-// 그룹 정보 조회 
+// 그룹 정보 조회
 const getGroup = async (req, res, next) => {
   Group.findAll({
-      where: {
-          id: req.params.group_id,
-      },
-      include: {
-        model: Student,
-      },
+    where: {
+      id: req.params.group_id,
+    },
+    include: {
+      model: Student,
+    },
   })
     .then((result) => {
       res.status(201).send(result);
