@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "myoungjinoh",
-    "password": "018277",
+    "username": "root",
+    "password": "",
     "database": "eclassDB",
     "host": "127.0.0.1",
     "dialect": "mysql",
