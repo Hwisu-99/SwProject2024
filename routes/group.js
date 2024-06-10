@@ -6,8 +6,8 @@ const authenticateJWT = require('../middleware/authenticateJWT');
 const router = express.Router();
 
 router.get('/:group_id', authenticateJWT, getGroup);
-router.get('/', getAllGroup);
-// router.get('/', authenticateJWT, getGroup);
+// router.get('/', getAllGroup);
+router.get('/', authenticateJWT, getGroup);
 router.delete('/:group_id', authenticateJWT, deleteGroup);
 router.post('/:group_id/:student_id', addStudentToGroup);
 router.get('/empty_time/:group_id', authenticateJWT, getGroupEmptyTime);
