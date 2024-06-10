@@ -7,7 +7,7 @@
 
 /**
  * @swagger
- * /group/:
+ * /group:
  *   get:
  *     tags:
  *       - Group

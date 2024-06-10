@@ -40,7 +40,7 @@
 
 /**
  * @swagger
- * /lecture/:
+ * /lecture:
  *   get:
  *     tags:
  *       - Lecture
