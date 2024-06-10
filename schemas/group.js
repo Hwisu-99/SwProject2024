@@ -7,6 +7,29 @@
 
 /**
  * @swagger
+ * /group/:
+ *   get:
+ *     tags:
+ *       - Group
+ *     name: Get ALl Group info
+ *     description: Get ALl Group info
+ *     parameters:
+ *       - name: Authorization
+ *         in: header
+ *         required: true
+ *         description: JWT Access token.
+ *         schema:
+ *           type: string
+ *           example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoia2ltIiwiZWNsYXNzSUQiOiJzb21lX2VjbGFzc0lEMSIsImlhdCI6MTcxNzY2NTcwOSwiZXhwIjoxNzE3NjY5MzA5fQ.smC250xL5mMiU8E9s3GHW5hesAfc3-iCqZ8k9N2haHs"
+ *     responses:
+ *       200:
+ *         description: Succeess
+ *       500:
+ *         description: Fail
+ */
+
+/**
+ * @swagger
  * /group/{group_id}:
  *   delete:
  *     tags:
@@ -21,6 +44,13 @@
  *           type: integer
  *           example:
  *               group_id: 1
+ *       - name: Authorization
+ *         in: header
+ *         required: true
+ *         description: JWT Access token.
+ *         schema:
+ *           type: string
+ *           example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoia2ltIiwiZWNsYXNzSUQiOiJzb21lX2VjbGFzc0lEMSIsImlhdCI6MTcxNzY2NTcwOSwiZXhwIjoxNzE3NjY5MzA5fQ.smC250xL5mMiU8E9s3GHW5hesAfc3-iCqZ8k9N2haHs"
  *     responses:
  *       200:
  *         description: Succeess to delete

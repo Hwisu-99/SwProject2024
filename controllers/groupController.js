@@ -1,5 +1,9 @@
 // 그룹 관련 기능을 처리하는 컨트롤러 파일
 const { Group, Student, Lecture, Time } = require("../models");
+const { getAllGroup } = require("./studentController");
+
+
+
 
 // 그룹 정보 조회
 const getGroup = async (req, res, next) => {
@@ -197,4 +201,5 @@ module.exports = {
   deleteGroup,
   addStudentToGroup,
   getGroupEmptyTime,
+  getAllGroup
 };
