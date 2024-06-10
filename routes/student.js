@@ -1,6 +1,6 @@
 // 그룹 관련 라우트 파일
 const express = require('express');
-const { getStudent, deleteStudent} = require('../controllers/studentController');
+const { getStudent, deleteStudent } = require('../controllers/studentController');
 const authenticateJWT = require('../middleware/authenticateJWT');
 
 const router = express.Router();
