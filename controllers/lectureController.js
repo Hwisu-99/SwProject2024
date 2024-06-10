@@ -27,30 +27,6 @@ const getAllLecture = async (req, res, next) => {
     }
 }
 
-const getAllLectureOfStudent = async (req, res, next) => {
-    try {
-        const student = await Student.findOne({
-            where: {
-                id: req.params.student_id,
-            },
-            include: [{
-                model: Lecture,
-                through: { attributes: [] }
-            }]
-        });
-
-        if (!student) {
-            return res.status(404).send({ message: 'Student not found' });
-        }
-
-        const lectures = student.Lectures;
-
-        res.status(200).send(lectures);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send({ message: 'Server error' });
-    }
-};
 
 
 // 강의 시간 조회
@@ -99,4 +75,4 @@ const addLectureStudent = async (req, res, next) => {
     }
 }
 
-module.exports = { getLecture, getAllLecture, getLectureTime, addLectureStudent, getAllLectureOfStudent };
+module.exports = { getLecture, getAllLecture, getLectureTime, addLectureStudent };
