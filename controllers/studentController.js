@@ -1,6 +1,16 @@
 // 그룹 관련 기능을 처리하는 컨트롤러 파일
 const { Student, Group } = require("../models");
 
+const getAllGroup = async (req, res, next) => {
+  try {
+    const groups = await Group.findAll();
+    res.status(200).send(groups);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: 'Server error' });
+  }
+}
+
 // 그룹 정보 조회
 const getStudent = async (req, res, next) => {
   Student.findOne({
@@ -21,8 +31,6 @@ const getStudent = async (req, res, next) => {
 };
 
 const deleteStudent = async (req, res, next) => {
-  console.log("#@@@@@@@@@@@@@@@@@@");
-
   try {
     const result = await Student.destroy({
       where: {
@@ -46,5 +54,6 @@ const deleteStudent = async (req, res, next) => {
 
 module.exports = {
   getStudent,
-  deleteStudent
+  deleteStudent,
+  getAllGroup
 };

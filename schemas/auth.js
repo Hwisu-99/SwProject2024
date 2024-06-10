@@ -26,8 +26,8 @@
  *               type: STRING
  *               maxLength: 40
  *           example:
- *             id: some_eclassID1
- *             password : some_password!
+ *             id: kim_studentID
+ *             password : kim_studentPW!
  *     responses:
  *       201:
  *         description: Succeess to login
