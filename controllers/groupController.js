@@ -1,11 +1,9 @@
 // 그룹 관련 기능을 처리하는 컨트롤러 파일
 const { Group, Student, Lecture, Time } = require("../models");
-const { getAllGroup } = require("./studentController");
 
 
 
-
-// 그룹 정보 조회
+// 특정 그룹의 정보 가져오기 (그룹에 속해있는 학생들 정보 또한 가져옴)
 const getGroup = async (req, res, next) => {
   Group.findAll({
     where: {
@@ -21,6 +19,17 @@ const getGroup = async (req, res, next) => {
     .catch((err) => {
       res.status(500).send();
     });
+};
+
+// 그룹 정보 가져오기 
+const getAllGroup = async (req, res, next) => {
+    try {
+      const groups = await Group.findAll();
+      res.status(200).send(groups);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send({ message: 'Server error' });
+    }
 };
 
 const deleteGroup = async (req, res, next) => {
@@ -198,8 +207,8 @@ const getGroupEmptyTime = async (req, res, next) => {
 
 module.exports = {
   getGroup,
+  getAllGroup,
   deleteGroup,
   addStudentToGroup,
   getGroupEmptyTime,
-  getAllGroup
 };
