@@ -1,25 +1,34 @@
-const db = require('../config/db');
+const Sequelize = require('sequelize');
 
-const Group = {
-  findByGroupId: (userGroupId, callback) => {
-    const query = `
-      SELECT ug.id, ug.name, u.name AS member
-      FROM user_groups ug
-      JOIN group_members gm ON ug.id = gm.group_id
-      JOIN users u ON gm.user_id = u.id
-      WHERE gm.group_id = ?
-    `;
-    db.query(query, [userGroupId], callback);
-  },
-  getSchedule: (groupId, callback) => {
-    const query = `
-      SELECT s.time_slot
-      FROM schedules s
-      JOIN group_members gm ON s.user_id = gm.user_id
-      WHERE gm.group_id = ?
-    `;
-    db.query(query, [groupId], callback);
+module.exports = class Group extends Sequelize.Model {
+  static init(sequelize) {
+    return super.init({
+      name: {
+        type: Sequelize.STRING(15),
+        allowNull: false,
+      },
+    }, {
+      sequelize,
+      timestamps: false,
+      underscored: false,
+      modelName: 'Group',
+      tableName: 'groups',
+      paranoid: false,
+      charset: 'utf8',
+      collate: 'utf8_general_ci',
+    });
+  }
+
+  static associate(db) {
+    db.Group.belongsToMany(db.Student, { through: 'Student-Group' });
+    db.Group.belongsTo(db.Professor, {
+      foreignKey: { name: "professor_id", allowNull: false }, sourceKey: 'id'
+    });
+    db.Group.belongsTo(db.Lecture, {
+      foreignKey: { name: "lecture_id", allowNull: false }, sourceKey: 'id'
+    });
+    db.Group.hasMany(db.Meeting, {
+      foreignKey: { name: "group_id", allowNull: true }, sourceKey: 'id', onDelete: "cascade", onUpdate: "cascade",
+    });
   }
 };
-
-module.exports = Group;
