@@ -1,3 +1,5 @@
+const Sequelize = require('sequelize');
+
 module.exports = class Group extends Sequelize.Model {
     static init(sequelize) {
       return super.init({
