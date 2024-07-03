@@ -1,4 +1,4 @@
-# GroupPageTest
+# Eclass Group Page Update
 
 ## How to install and use
 1. Clone the repository
