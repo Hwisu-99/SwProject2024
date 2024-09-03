@@ -1,4 +1,4 @@
-# Eclass Group Page Update
+# Improve Eclass group page
 
 ## How to install and use
 1. Clone the repository
